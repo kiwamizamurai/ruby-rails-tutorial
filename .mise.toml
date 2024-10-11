@@ -1,0 +1,34 @@
+[settings]
+experimental = true
+
+[tools]
+ruby = '3.2.2' # 使ってない
+
+[tasks.setup]
+description = "Setup project"
+run = [
+    "mise i",
+    "docker compose run rapp rails new . --database=postgresql",
+    "docker compose build"
+]
+
+
+[tasks.up]
+description = "Start containers"
+run = "docker compose up -d"
+dir = "."
+
+[tasks.down]
+description = "Destroy containers"
+run = "docker compose down"
+dir = "."
+
+[tasks.ps]
+description = "Show containers info"
+run = "docker compose ps"
+dir = "."
+
+[tasks.tbls]
+description = "Generate er diagram"
+run = "tbls doc --rm-dist"
+dir = "./docs"
